@@ -6,7 +6,7 @@
         {
             (List<int> numbers, List<int[,]> boards) = DataService.GetDay4Data();
 
-            (int[,] winningBoard, int winningNumberCall) = DetermineWinningBoard(numbers, boards);
+            (int[,] winningBoard, int winningNumberCall) = DetermineWinningBoard(numbers, boards, true);
 
             int sumOfRemainingBoardNumbers = 0;
             for (int i = 0; i < 5; i++)
@@ -18,11 +18,19 @@
 
         public static int Part2()
         {
-            //(List<int> numbers, List<int[,]> boards) data = DataService.GetDay4Data();
-            return 0;
+            (List<int> numbers, List<int[,]> boards) = DataService.GetDay4Data();
+
+            (int[,] winningBoard, int winningNumberCall) = DetermineWinningBoard(numbers, boards, false);
+
+            int sumOfRemainingBoardNumbers = 0;
+            for (int i = 0; i < 5; i++)
+                for (int j = 0; j < 5; j++)
+                    sumOfRemainingBoardNumbers += winningBoard[i, j] != -1 ? winningBoard[i, j] : 0;
+
+            return sumOfRemainingBoardNumbers * winningNumberCall;
         }
 
-        private static (int[,] winningBoard, int winningNumberCall) DetermineWinningBoard(List<int> numbers, List<int[,]> boards)
+        private static (int[,] winningBoard, int winningNumberCall) DetermineWinningBoard(List<int> numbers, List<int[,]> boards, bool first)
         {
             const int bingoMatch = -1;
             bool[] bingoPerBoard = new bool[boards.Count];
@@ -79,8 +87,16 @@
             int winningBoardIndex = 0;
             for (int i = 0; i < bingoInRoundPerBoard.Length; i++)
             {
-                if (bingoInRoundPerBoard[i] < bingoInRoundPerBoard[winningBoardIndex]) winningBoardIndex = i;
+                if (first)
+                {
+                    if (bingoInRoundPerBoard[i] < bingoInRoundPerBoard[winningBoardIndex]) winningBoardIndex = i;
+                }
+                else
+                {
+                    if (bingoInRoundPerBoard[i] > bingoInRoundPerBoard[winningBoardIndex]) winningBoardIndex = i;
+                }
             }
+
             return (boards[winningBoardIndex], numbers[bingoInRoundPerBoard[winningBoardIndex]]);
         }
     }
