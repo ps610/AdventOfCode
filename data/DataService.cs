@@ -1,4 +1,6 @@
-﻿namespace AdventOfCode
+﻿using System.Text.RegularExpressions;
+
+namespace AdventOfCode
 {
     internal class DataService
     {
@@ -65,6 +67,17 @@
             }
 
             return (numbers, boards);
+        }
+
+        public static List<(int x1, int y1, int x2, int y2)> GetDay5Data()
+        {
+            IEnumerable<int[]> inputCoords = File.ReadAllLines(GetDataPath() + @"day5.txt")
+                .Select(line => Regex.Split(line, @"[^\d]+")
+                    .Select(int.Parse)
+                    .ToArray());
+
+            return inputCoords.Select(i => (x1: i[0], y1: i[1], x2: i[2], y2: i[3]))
+                .ToList();
         }
     }
 }
