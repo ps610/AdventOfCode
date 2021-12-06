@@ -30,6 +30,15 @@
             Console.WriteLine($"Part 2: {day3Part2}");
             Console.WriteLine();
             #endregion
+
+            #region Day 4
+            int day4Part1 = Day4.Part1();
+            int day4Part2 = Day4.Part2();
+            Console.WriteLine("Day 4");
+            Console.WriteLine($"Part 1: {day4Part1}");
+            Console.WriteLine($"Part 2: {day4Part2}");
+            Console.WriteLine();
+            #endregion
         }
     }
 }

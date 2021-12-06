@@ -29,5 +29,42 @@
                     .Select(x => int.Parse(x.ToString())).ToList())
                 .ToList();
         }
+
+        public static (List<int> numbers, List<int[,]> boards) GetDay4Data()
+        {
+            string[] input = File.ReadAllLines(GetDataPath() + @"day4.txt");
+
+            List<int> numbers = input[0].Split(',').Select(x => int.Parse(x)).ToList();
+
+            List<int[,]> boards = new();
+            int[,] currBoard = new int[5, 5];
+            int currLine = 0;
+            int currColumn = 0;
+
+            for (int i = 1; i < input.Length; i++)
+            {
+                if (input[i].Length == 0) continue;
+
+                currColumn = 0;
+                input[i].Split(' ', StringSplitOptions.RemoveEmptyEntries).ToList().ForEach(x =>
+                {
+                    currBoard[currLine, currColumn] = int.Parse(x);
+                    currColumn++;
+                });
+
+                if (currLine + 1 == 5)
+                {
+                    boards.Add(currBoard);
+                    currBoard = new int[5, 5];
+                    currLine = 0;
+                }
+                else
+                {
+                    currLine++;
+                }
+            }
+
+            return (numbers, boards);
+        }
     }
 }
