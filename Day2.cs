@@ -2,7 +2,7 @@
 {
     public class Day2
     {
-        public static (int horizontal, int depth) Part1()
+        public static int Part1()
         {
             List<(string direction, int value)> data = DataService.GetDay2Data();
             int horizontal = 0;
@@ -24,10 +24,10 @@
                 }
             }
 
-            return (horizontal, depth);
+            return horizontal * depth;
         }
 
-        public static (int horizontal, int depth, int aim) Part2()
+        public static int Part2()
         {
             List<(string direction, int value)> data = DataService.GetDay2Data();
             int horizontal = 0;
@@ -51,7 +51,7 @@
                 }
             }
 
-            return (horizontal, depth, aim);
+            return horizontal * depth;
         }
     }
 }
