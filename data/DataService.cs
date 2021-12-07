@@ -79,5 +79,10 @@ namespace AdventOfCode
             return inputCoords.Select(i => (x1: i[0], y1: i[1], x2: i[2], y2: i[3]))
                 .ToList();
         }
+
+        public static List<int> GetDay6Data()
+        {
+            return File.ReadAllLines(GetDataPath() + @"day6.txt").First().Split(',').Select(int.Parse).ToList();
+        }
     }
 }
