@@ -10,6 +10,7 @@
             WriteResultToConsole(4, Day4.Part1(), Day4.Part2());
             WriteResultToConsole(5, Day5.Part1(), Day5.Part2());
             WriteResultToConsole(6, Day6.Part1(), Day6.Part2());
+            WriteResultToConsole(7, Day7.Part1(), Day7.Part2());
         }
 
         private static void WriteResultToConsole<T, K>(int day, T part1, K part2)
