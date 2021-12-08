@@ -2,7 +2,7 @@
 
 namespace AdventOfCode
 {
-    internal class DataService
+    internal static class DataService
     {
         private static string GetDataPath()
         {
@@ -27,7 +27,7 @@ namespace AdventOfCode
         public static List<List<int>> GetDay3Data()
         {
             return File.ReadAllLines(GetDataPath() + @"day3.txt")
-                .Select(x => x.ToCharArray()
+                .Select(line => line.ToCharArray()
                     .Select(x => int.Parse(x.ToString())).ToList())
                 .ToList();
         }
@@ -36,18 +36,17 @@ namespace AdventOfCode
         {
             string[] input = File.ReadAllLines(GetDataPath() + @"day4.txt");
 
-            List<int> numbers = input[0].Split(',').Select(x => int.Parse(x)).ToList();
+            List<int> numbers = input[0].Split(',').Select(int.Parse).ToList();
 
             List<int[,]> boards = new();
             int[,] currBoard = new int[5, 5];
             int currLine = 0;
-            int currColumn = 0;
 
             for (int i = 1; i < input.Length; i++)
             {
                 if (input[i].Length == 0) continue;
 
-                currColumn = 0;
+                int currColumn = 0;
                 input[i].Split(' ', StringSplitOptions.RemoveEmptyEntries).ToList().ForEach(x =>
                 {
                     currBoard[currLine, currColumn] = int.Parse(x);
