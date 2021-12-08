@@ -88,5 +88,15 @@ namespace AdventOfCode
         {
             return File.ReadAllLines(GetDataPath() + @"day7.txt").First().Split(',').Select(int.Parse).ToList();
         }
+
+        public static List<string[][]> GetDay8Data()
+        {
+            return File.ReadAllLines(GetDataPath() + @"day8.txt")
+                .Select(line => line.Split('|')
+                    .Select(x => x.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                        .ToArray())
+                    .ToArray())
+                .ToList();
+        }
     }
 }
