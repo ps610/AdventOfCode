@@ -1,6 +1,6 @@
 ﻿namespace AdventOfCode
 {
-    public class AdventOfCode
+    public static class AdventOfCode
     {
         public static void Main()
         {

@@ -93,8 +93,7 @@ namespace AdventOfCode
         {
             return File.ReadAllLines(GetDataPath() + @"day8.txt")
                 .Select(line => line.Split('|')
-                    .Select(x => x.Split(' ', StringSplitOptions.RemoveEmptyEntries)
-                        .ToArray())
+                    .Select(x => x.Split(' ', StringSplitOptions.RemoveEmptyEntries).ToArray())
                     .ToArray())
                 .ToList();
         }
