@@ -113,5 +113,10 @@ namespace AdventOfCode
 
             return result;
         }
+
+        public static List<string> GetDay10Data()
+        {
+            return File.ReadAllLines(GetDataPath() + @"day10.txt").ToList();
+        }
     }
 }
