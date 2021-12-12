@@ -97,5 +97,21 @@ namespace AdventOfCode
                     .ToArray())
                 .ToList();
         }
+
+        public static int[,] GetDay9Data()
+        {
+            List<string> input = File.ReadAllLines(GetDataPath() + @"day9.txt").ToList();
+            int[,] result = new int[input.Count, input[0].Length];
+
+            for (int y = 0; y < input.Count; y++)
+            {
+                for (int x = 0; x < input[0].Length; x++)
+                {
+                    result[y, x] = int.Parse(input[y][x].ToString());
+                }
+            }
+
+            return result;
+        }
     }
 }
